@@ -1,0 +1,6 @@
+/SocialMediaEnv/*
+*settings.py
+**/__pycache__/*
+**/migrations/*
+*manage.py
+
