@@ -1,11 +1,11 @@
 {% extends "Groups/group_base.html" %}
 {% block pregroup %}
 
-
 <h1>{{group.name}}</h1>
 <h2>Member Count: {{Groups.members.count }}</h2>
 <div class="content">
     <div class="row">
+
         {% if user in Groups.members.all %}
             <a href="{url 'Groups:leave' slug=group.slug %}"
             class = 'btn btn-lg btn-fill btn-warning'>
@@ -15,9 +15,10 @@
         class = "btn btn-lg btn-fill btn-warning"><span
         class = "glyphicon glyphicon-ok-circle"></span>Leave</a>
         {% endif %}
-</div>
-        {% endblock %}
 
+</div>
+
+        {% endblock %}
     {% block group_content %} 
         <div class = "col-md-8">
     {% if group.posts.count == 0 %}
