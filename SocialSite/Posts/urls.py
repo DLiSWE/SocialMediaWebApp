@@ -1,7 +1,7 @@
 from django.urls import re_path
 from . import views
 
-app_name = 'posts'
+app_name = 'Posts'
 
 urlpatterns = [
     re_path(r'^$', views.PostList.as_view(),name='all'),

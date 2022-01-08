@@ -24,12 +24,12 @@
             <a class='navbar-brand' href="{% url 'home' %}"> Software Engineering Convos </a>
             <ul class='nav navbar-nav navbar-right'>
                 {% if user.is_authenticated %}
-                <li><a href="#####">Post</a></li>
-                <li><a href="#####">Groups</a></li>
-                <li><a href="#####">Create Group</a></li>
+                <li><a href="{% url 'Posts:create'%}">Post</a></li>
+                <li><a href="{% url 'Groups:all' %}">Groups</a></li>
+                <li><a href="{% url 'Groups:create' %}">Create Group</a></li>
                 <li><a href="{% url 'Accounts:logout' %}">Log Out</a></li>
                 {% else %}
-                <li><a href="#">Groups</a></li>
+                <li><a href="{% url 'Groups:all' %}">Groups</a></li>
                 <li><a href="{% url 'Accounts:login' %}">Log In</a></li>
                 <li><a href="{% url 'Accounts:signup' %}">Sign Up</a></li>
                 {% endif %}

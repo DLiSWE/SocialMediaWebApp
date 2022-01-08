@@ -1,4 +1,4 @@
-{% extends "Groups/group_base.html" %}
+{% extends "Groups/groups_base.html" %}
 {% block pregroup %}
 
 <h1>{{group.name}}</h1>
@@ -7,7 +7,7 @@
     <div class="row">
 
         {% if user in Groups.members.all %}
-            <a href="{url 'Groups:leave' slug=group.slug %}"
+            <a href="{% url 'Groups:leave' slug=group.slug %}"
             class = 'btn btn-lg btn-fill btn-warning'>
             <span class='glyphicon glyphicon-remove-circle'>Leave<span></a>
         {% else %}
