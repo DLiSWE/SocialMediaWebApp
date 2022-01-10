@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.conf import settings
 import misaka
 
-from Groups.models import Group
+from Groups.models import Group, GroupMember
 from django.contrib.auth import get_user_model
 
 # Create your models here.

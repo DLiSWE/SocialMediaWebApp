@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import generic
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
-from Groups.models import Group,GroupMember
+from Groups.models import Group, GroupMember
 from Posts import models
 
 # Create your views here.

@@ -6,30 +6,29 @@
 <div class="content">
     <div class="row">
 
-        {% if user in Groups.members.all %}
+        {% if user in group.members.all %}
             <a href="{% url 'Groups:leave' slug=group.slug %}"
             class = 'btn btn-lg btn-fill btn-warning'>
-            <span class='glyphicon glyphicon-remove-circle'>Leave<span></a>
+            <span class="bi bi-door-open-fill">Leave<span></a>
         {% else %}
         <a href="{% url 'Groups:join' slug=group.slug %}"
-        class = "btn btn-lg btn-fill btn-warning"><span
-        class = "glyphicon glyphicon-ok-circle"></span>Leave</a>
+        class = "btn btn-lg btn-fill btn-primary"><span
+        class = "bi bi-person-plus-fill"></span>Join</a>
         {% endif %}
+    </div>
+{% endblock %}
 
-</div>
-
-        {% endblock %}
     {% block group_content %} 
-        <div class = "col-md-8">
+    <div class = "col-md-8">
     {% if group.Posts.count == 0 %}
-        <h2> No posts available yet! </h2>
+        <h2> No posts available yet! Start a conversation here! </h2>
     {% else %}
         {% for post in group.Posts.all %}
         {% comment %} inject posts/_post.html using include here {% endcomment %}
             {% include "Posts/_post.html" %}
         {% endfor %}
     {% endif %}
-
+    </div>
+{% comment %} IF user in group.members.all, render form to post. After post submit is clicked, update page {% endcomment %}    
 </div>
-
 {% endblock %}

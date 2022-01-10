@@ -5,7 +5,7 @@
 <div class="col-md-4">
     {% if request.user.is_authenticated %}
     <div class="card card-with-shadow">
-        <div class="content">
+        <div class="stroke" data-text="Gradient stroke">
             <h4 class='title'>Your Groups</h5>
             <ul class='list-unstyled'>
                 {% for member_group in get_user_groups %}
