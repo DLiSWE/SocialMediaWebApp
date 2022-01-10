@@ -1,11 +1,11 @@
 {% extends "Groups/groups_base.html" %}
-{% block pregroup %}
+{% load bootstrap5 %}
 
+{% block pregroup %}
 <h1>{{group.name}}</h1>
 <h2>Member Count: {{ group.members.count }}</h2>
 <div class="content">
     <div class="row">
-
         {% if user in group.members.all %}
             <a href="{% url 'Groups:leave' slug=group.slug %}"
             class = 'btn btn-lg btn-fill btn-warning'>
@@ -18,7 +18,7 @@
     </div>
 {% endblock %}
 
-    {% block group_content %} 
+{% block group_content %} 
     <div class = "col-md-8">
     {% if group.Posts.count == 0 %}
         <h2> No posts available yet! Start a conversation here! </h2>
@@ -29,6 +29,20 @@
         {% endfor %}
     {% endif %}
     </div>
-{% comment %} IF user in group.members.all, render form to post. After post submit is clicked, update page {% endcomment %}    
+{% comment %} IF user in group.members.all, render form to post. After post submit is clicked, update page {% endcomment %}   
+</div>
+{% endblock %}
+
+{% block postgroup %}
+<div class = "col-md-8">
+    {% if user in group.members.all %}
+    <form id='postForm' action="{% url 'Posts:create' %}" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Post" class='btn btn-primary btn-large'>
+    </form>
+    {% else %}
+    <a>Join room to start posting!</a>
+    {% endif %}
 </div>
 {% endblock %}
