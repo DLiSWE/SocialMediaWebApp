@@ -7,9 +7,8 @@ from django.views import generic
 from django.contrib.auth import get_user_model
 from braces.views import SelectRelatedMixin
 from django.contrib import messages
-
 from . import models
-from . import forms
+
 # Create your views here.
 User = get_user_model()
 

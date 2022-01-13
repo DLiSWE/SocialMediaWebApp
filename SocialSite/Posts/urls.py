@@ -2,7 +2,7 @@ from django.urls import re_path
 from . import views
 
 app_name = 'Posts'
-
+#using raw literals
 urlpatterns = [
     re_path(r'^$', views.PostList.as_view(),name='all'),
     re_path(r'^new/$', views.CreatePost.as_view(),name='create'),

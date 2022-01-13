@@ -11,12 +11,22 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class Post(models.Model):
+    """
+    Class: Post model
+    Attributes:
+    User: Foreign key associated with User model that is initialized by get_user_model()
+    Date Created: Date time field with current time as input
+    Message: User text field description
+    Message HTML: markdown safe text description of Message attribute
+    Group: Foreign key associated with Group model, imported from Groups app
+    """
     user = models.ForeignKey(User,related_name='Posts', on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
     message = models.TextField()
     message_html = models.TextField(editable=False)
     group = models.ForeignKey(Group, related_name='Posts',null=True,blank=True, on_delete = models.CASCADE)
 
+    #return stringified msg
     def __str__(self):
         return self.message
 
@@ -25,6 +35,7 @@ class Post(models.Model):
         self.message_html = misaka.html(self.message)
         super().save(*args,**kwargs)    
 
+    #This will create the url link for the post. 
     def get_absolute_url(self):
         return reverse("Posts:single", kwargs={"username":self.user.username,
                                                 "pk": self.pk})

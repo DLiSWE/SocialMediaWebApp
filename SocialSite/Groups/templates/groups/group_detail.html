@@ -29,20 +29,22 @@
         {% endfor %}
     {% endif %}
     </div>
+    
 {% comment %} IF user in group.members.all, render form to post. After post submit is clicked, update page {% endcomment %}   
 </div>
 {% endblock %}
 
-{% block postgroup %}
-<div class = "col-md-8">
+
+
+
+{% comment %} {% block postgroup %}
     {% if user in group.members.all %}
-    <form id='postForm' action="{% url 'Posts:create' %}" method="post">
+    <form action="{% url 'Posts:create' %}" method="POST" id="PostForm">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <input type="submit" value="Post" class='btn btn-primary btn-large'>
+        <input type="submit" class="btn btn-outline-success me-2" value="Create">
     </form>
     {% else %}
     <a>Join room to start posting!</a>
     {% endif %}
-</div>
-{% endblock %}
+{% endblock %}  {% endcomment %}

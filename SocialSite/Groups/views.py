@@ -5,10 +5,10 @@ from django.views import generic
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from Groups.models import Group, GroupMember
-from Posts import models
+from Posts.models import Post
 from braces.views import SelectRelatedMixin
+from . import models
 
-# Create your views here.
 class CreateGroup(LoginRequiredMixin,generic.CreateView):
     fields = ('name','description')
     model = Group
@@ -54,14 +54,3 @@ class LeaveGroup(LoginRequiredMixin,generic.RedirectView):
             messages.success(self.request,'You have left the group!')
         
         return super().get(request,*args,**kwargs)
-
-class CreatePost(LoginRequiredMixin,SelectRelatedMixin,generic.CreateView):
-
-    fields = ('message','group')
-    model = models.Post
-
-    def form_valid(self,form):
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        self.object.save()
-        return super().form_valid(form)
