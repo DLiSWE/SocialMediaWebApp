@@ -18,7 +18,7 @@
 </head>
 <body>
 {% comment %} Nav bar under construction {% endcomment %}
-    <nav class='navbar fixed-top navbar-expand-lg navbar-dark bg-primary' role='navigation' id='navbar'>
+    <nav class='navbar navbar-expand-lg navbar-dark bg-primary' role='navigation' id='navbar'>
         <div class="container-fluid">
             <a class='navbar-brand' href="{% url 'home' %}"> Software Engineering Convos </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,7 @@
             </form>
         </div>
     </nav>
-    <div class="container-mycontent">
+    <div class="container mycontent">
         {% block content %}
         {% endblock %}
     </div>

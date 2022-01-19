@@ -1,26 +1,27 @@
+ /* content div */
 .mycontent{
-    padding-top: 100px;
-   border: 10px solid rgb(180, 140, 199);
+    padding-top: 30px;
+    padding-bottom: 30px;
+   background: #5AB9EA;
   }
+ /* change info bootstrap color to purple */
+.btn-info {
+    background-color: #8860D0 !important;
+    border-color: #8860D0 !important;
+    }
+    .btn-info:hover,
+    .btn-info:active,
+    .btn-info:visited,
+    .btn-info:focus {
+    background-color: #694ca0 !important;
+    border-color: #694ca0 !important;
+    }
   html,
   body {
-    padding-top: 50px;
     height: 100%;
     width: 100%;
-    overflow: hidden;
-    background: #0f2c8b;
+    background: #5680E9;
+    color:whitesmoke;
     margin: 0;
   }
-  
-  #note {
-    position: absolute;
-    color: rgba(249,241,204,1);
-    left: 0;
-    right: 0;
-    bottom: 20px;
-    margin: auto;
-    text-align: center;
-    user-select: none;
-    font-family: Arial;
-  }
-  
+
