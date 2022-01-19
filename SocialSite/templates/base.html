@@ -13,14 +13,12 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'SocialSite/css/master.css' %}" type="text/css" media="screen">
-
-
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
 
 </head>
 <body>
 {% comment %} Nav bar under construction {% endcomment %}
-    <nav class='navbar navbar-expand-lg navbar-dark bg-primary' role='navigation' id='navbar'>
+    <nav class='navbar fixed-top navbar-expand-lg navbar-dark bg-primary' role='navigation' id='navbar'>
         <div class="container-fluid">
             <a class='navbar-brand' href="{% url 'home' %}"> Software Engineering Convos </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,15 +27,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'posts' %}active{% endif %}" href="{% url 'Posts:create'%}"><span class="bi bi-clipboard-plus">Post</span></a></li>
-                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'groups' %}active{% endif %}" href="{% url 'Groups:all' %}"><span class="bi bi-people-fill">Groups</span></a></li>
-                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'groups' %}active{% endif %}" href="{% url 'Groups:create' %}"><span class="bi bi-node-plus-fill">Create Group</span></a></li>
-                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'Accounts' %}active{% endif %}" href="{% url 'Accounts:logout' %}"><span class="bi bi-door-closed-fill">Log Out</span></a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'createpost' %}active{% endif %}" href="{% url 'Posts:createpost'%}"><span class="bi bi-clipboard-plus">Post</span></a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'all' %}active{% endif %}" href="{% url 'Groups:all' %}"><span class="bi bi-people-fill">Groups</span></a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'create' %}active{% endif %}" href="{% url 'Groups:create' %}"><span class="bi bi-node-plus-fill">Create Group</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'Accounts:logout' %}"><span class="bi bi-door-closed-fill">Log Out</span></a></li>
+                <li class="nav-item"><a class="nav-link"><span class="bi bi-gear-fill"></span></a></li>
                 {% else %}
-                <li class="nav-item"><a class="nav-link disabled"href="{% url 'Posts:create'%}">Post</a></li>
-                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'groups' %}active{% endif %}" href="{% url 'Groups:all' %}"><span class="bi bi-people-fill">Groups</span></a></li>
-                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'Accounts' %}active{% endif %}" href="{% url 'Accounts:login' %}"><span class="bi bi-door-open-fill">Log In<span></a></li>
-                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'Accounts' %}active{% endif %}" href="{% url 'Accounts:signup' %}"><span class="bi bi-person-plus-fill">Sign Up</span></a></li>
+                <li class="nav-item"><a class="nav-link disabled">Post</a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'all' %}active{% endif %}" href="{% url 'Groups:all' %}"><span class="bi bi-people-fill">Groups</span></a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}" href="{% url 'Accounts:login' %}"><span class="bi bi-door-open-fill">Log In<span></a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'signup' %}active{% endif %}" href="{% url 'Accounts:signup' %}"><span class="bi bi-person-plus-fill">Sign Up</span></a></li>
                 {% endif %}
             </ul>
             <form class="d-flex">
@@ -46,13 +45,10 @@
             </form>
         </div>
     </nav>
-    <div class=>
-    </div>
-    <div class="container mycontent">
+    <div class="container-mycontent">
         {% block content %}
-
         {% endblock %}
-
+    </div>
     
 </body>
 </html>

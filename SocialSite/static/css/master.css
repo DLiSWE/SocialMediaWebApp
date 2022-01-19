@@ -1,18 +1,18 @@
 .mycontent{
     padding-top: 100px;
-   border: 10px solid rgb(135, 7, 194);
+   border: 10px solid rgb(180, 140, 199);
   }
-  
   html,
   body {
+    padding-top: 50px;
     height: 100%;
     width: 100%;
     overflow: hidden;
-    background: #191063;
+    background: #0f2c8b;
     margin: 0;
   }
   
-  /* #note {
+  #note {
     position: absolute;
     color: rgba(249,241,204,1);
     left: 0;
@@ -23,4 +23,4 @@
     user-select: none;
     font-family: Arial;
   }
-   */
+  
