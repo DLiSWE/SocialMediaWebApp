@@ -31,7 +31,7 @@
                 <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'all' %}active{% endif %}" href="{% url 'Groups:all' %}"><span class="bi bi-people-fill">Groups</span></a></li>
                 <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'create' %}active{% endif %}" href="{% url 'Groups:create' %}"><span class="bi bi-node-plus-fill">Create Group</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'Accounts:logout' %}"><span class="bi bi-door-closed-fill">Log Out</span></a></li>
-                <li class="nav-item"><a class="nav-link"><span class="bi bi-gear-fill"></span></a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'editprof' %}active{% endif %}" href="{% url 'Accounts:editprof' %}"><span class="bi bi-gear-fill"></span></a></li>
                 {% else %}
                 <li class="nav-item"><a class="nav-link disabled">Post</a></li>
                 <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'all' %}active{% endif %}" href="{% url 'Groups:all' %}"><span class="bi bi-people-fill">Groups</span></a></li>
