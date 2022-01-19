@@ -20,7 +20,7 @@
 </head>
 <body>
 {% comment %} Nav bar under construction {% endcomment %}
-    <nav class='navbar navbar-expand-lg navbar-light bg-light' role='navigation' id='navbar'>
+    <nav class='navbar navbar-expand-lg navbar-dark bg-primary' role='navigation' id='navbar'>
         <div class="container-fluid">
             <a class='navbar-brand' href="{% url 'home' %}"> Software Engineering Convos </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,20 +29,25 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link"href="{% url 'Posts:create'%}">Post</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'Groups:all' %}">Groups</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'Groups:create' %}">Create Group</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'Accounts:logout' %}">Log Out</a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'posts' %}active{% endif %}" href="{% url 'Posts:create'%}"><span class="bi bi-clipboard-plus">Post</span></a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'groups' %}active{% endif %}" href="{% url 'Groups:all' %}"><span class="bi bi-people-fill">Groups</span></a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'groups' %}active{% endif %}" href="{% url 'Groups:create' %}"><span class="bi bi-node-plus-fill">Create Group</span></a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'Accounts' %}active{% endif %}" href="{% url 'Accounts:logout' %}"><span class="bi bi-door-closed-fill">Log Out</span></a></li>
                 {% else %}
                 <li class="nav-item"><a class="nav-link disabled"href="{% url 'Posts:create'%}">Post</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'Groups:all' %}">Groups</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'Accounts:login' %}">Log In</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'Accounts:signup' %}">Sign Up</a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'groups' %}active{% endif %}" href="{% url 'Groups:all' %}"><span class="bi bi-people-fill">Groups</span></a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'Accounts' %}active{% endif %}" href="{% url 'Accounts:login' %}"><span class="bi bi-door-open-fill">Log In<span></a></li>
+                <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'Accounts' %}active{% endif %}" href="{% url 'Accounts:signup' %}"><span class="bi bi-person-plus-fill">Sign Up</span></a></li>
                 {% endif %}
             </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit"><span class="bi bi-search"></span></button>
+            </form>
         </div>
     </nav>
-
+    <div class=>
+    </div>
     <div class="container mycontent">
         {% block content %}
 
