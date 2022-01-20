@@ -1,12 +1,12 @@
-from django.urls import re_path
+from django.urls import path
 from . import views
 
 app_name = 'Posts'
 #using raw literals
 urlpatterns = [
-    re_path(r'^$', views.PostList.as_view(),name='all'),
-    re_path(r'^new/$', views.CreatePost.as_view(),name='createpost'),
-    re_path(r'by/(?P<username>[-\w]+)', views.UserPosts.as_view(),name='for_user'),
-    re_path(r'by/(?P<username>[-\w]+)/(?P<pk>\d+)$', views.PostDetail.as_view(),name='single'),
-    re_path(r'delete/(?P<pk>\d+)/$', views.DeletePost.as_view(),name='delete')
+    path('', views.PostList.as_view(),name='all'),
+    path('new/', views.CreatePost.as_view(),name='createpost'),
+    path('by/<str:username>', views.UserPosts.as_view(),name='for_user'),
+    path('by/<str:username>/<int:pk>', views.PostDetail.as_view(),name='single'),
+    path('delete/<int:pk>', views.DeletePost.as_view(),name='delete')
 ]

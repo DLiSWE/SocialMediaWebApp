@@ -24,6 +24,7 @@ class JoinGroup(LoginRequiredMixin, generic.RedirectView):
     def get_redirect_url(self,*args,**kwargs):
         return reverse('Groups:single', kwargs={'slug':self.kwargs.get('slug')})
 
+#create query to assign user to group/one to many relationship
     def get(self,request,*args,**kwargs):
         group = get_object_or_404(Group, slug=self.kwargs.get('slug'))
 
