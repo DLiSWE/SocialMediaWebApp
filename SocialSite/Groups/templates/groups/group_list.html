@@ -2,10 +2,12 @@
 {% block pregroup %}
 <div class="col-md-4">
     <div class = "content">
-    {% if user.is_authenticated %}
+    {% if enduser.is_authenticated %}
     <h2>Welcome Back!
         <a href="{% url 'Posts:for_user' username=user.username%}">
-            @{{user.username}}
+            @{{enduser.username}}
+            {{enduser.avatar}}
+            {{enduser.urls}}
         </a>
     </h2>
 
@@ -13,7 +15,7 @@
     <h2> Groups </h2>
     <p> Welcome to the groups page!</p>
 </div>
-    {% if user.is_authenticated %}
+    {% if enduser.is_authenticated %}
     <a href ="{% url 'Groups:create' %}" class = 'btn btn-md btn-fill btn-info'>
         <span class="bi bi-clipboard-plus">Create New Group</span></a>
     {%endif%}

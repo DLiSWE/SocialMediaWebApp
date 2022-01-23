@@ -8,6 +8,10 @@ class PostForm(forms.ModelForm):
         fields = ("message", "group")
         model = models.Post
 
+        widgets = {
+            'title': forms.TextInput(attrs={'class':'textinputclass'}),
+            'text':forms.Textarea(attrs={'class':'editable medium-editor-textarea postcontent'})
+        }
     def __init__(self, *args, **kwargs):
         user = kwargs.pop("user", None)
         super().__init__(*args, **kwargs)

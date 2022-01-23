@@ -1,8 +1,10 @@
+from profile import Profile
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView
-from .forms import SignupForm, EditForm
+from .forms import SignupForm, EditForm, ProfileUpdateForm
 from django.contrib.auth import get_user_model
 
 # Create your views here.
@@ -22,5 +24,16 @@ class EditUser(UpdateView, LoginRequiredMixin):
     template_name = 'Accounts/edit_profile.html'
     success_url = reverse_lazy('Groups:all')
 
-    # def get_object(self):
-    #     return self.request.user
+
+class UpdateProfile(UpdateView, LoginRequiredMixin):
+    model = get_user_model()
+    form_class = ProfileUpdateForm
+    template_name = 'Accounts/profile_page.html'
+    success_url = reverse_lazy('profileview')
+
+class ProfileView(DetailView):
+    model = get_user_model()
+    template_name = 'Accounts/profile_page.html'
+    success_url = reverse_lazy('profileview')
+
+
