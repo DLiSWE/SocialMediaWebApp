@@ -1,25 +1,14 @@
 {% extends "base.html" %}
-{% load bootstrap5 %}
 
 {% block content %}
-<div class = "container">
+<div class = "col">
     <h1>{{ user.username }}</h1>
-    <img src={{ user.avatar }}>
-    <h2>{{ user.urls }}</h2>
-    <h2>{{ user.bio }}</h2>
+    <img class="rounded-circle account-img" src={{ user.avatar.url }}>
+    <h3>{{ user.urls }}</h3>
+    <p>{{ user.bio }}</p>
 </div>
-<div class = "container">
-    {% if user.avatar is default_profile.jpg %}
-        <h2>Change your profile picture</h2>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {% bootstrap_form form %}
-            <input type="submit" class="btn btn-success" value="Change">
-        </form>
-    {% else %}
-        <h1>{{ user.username }} </h1>
-        <img src={{ user.avatar.url }}>
-
-    {% endif %}
-</div>
+<button class='btn btn-info'><a href="{% url 'Accounts:editprof' request.user.pk %}">Edit Profile</a></button>
+{% comment %} posts/_post.html {% endcomment %}
+{% endblock %}
+{% block content_edit %}
 {% endblock %}

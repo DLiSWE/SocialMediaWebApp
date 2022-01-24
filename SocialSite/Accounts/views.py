@@ -21,19 +21,19 @@ class EditUser(UpdateView, LoginRequiredMixin):
     model = get_user_model()
     #temporary form
     form_class = EditForm
-    template_name = 'Accounts/edit_profile.html'
+    template_name = 'Accounts/edit_user.html'
     success_url = reverse_lazy('Groups:all')
 
 
 class UpdateProfile(UpdateView, LoginRequiredMixin):
     model = get_user_model()
     form_class = ProfileUpdateForm
-    template_name = 'Accounts/profile_page.html'
-    success_url = reverse_lazy('profileview')
+    template_name = 'Accounts/edit_profile.html'
+    success_url = reverse_lazy('Accounts:profileview')
 
 class ProfileView(DetailView):
     model = get_user_model()
     template_name = 'Accounts/profile_page.html'
-    success_url = reverse_lazy('profileview')
+    
 
 

@@ -24,7 +24,10 @@ class EditForm(UserForm):
         self.fields['username'].label = 'Change Username'
         self.fields['email'].label = 'Change Email Address'
 
-class ProfileUpdateForm(forms.ModelForm):
+class ProfileUpdateForm(UserForm):
+    avatar = forms.ImageField()
+    urls = forms.URLField()
+    bio = forms.CharField()
 
     class Meta:
         model = get_user_model()

@@ -1,4 +1,9 @@
  /* content div */
+ .nav-link:hover {
+  background-color: #ffffff;
+  color:#000000;
+}
+
 .mycontent{
     padding-top: 30px;
     padding-bottom: 30px;
