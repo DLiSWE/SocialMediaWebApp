@@ -44,3 +44,5 @@ class Post(models.Model):
         ordering = ['-created_at']
         #every message is linked to a unique user
         unique_together = ['user', 'message']
+
+

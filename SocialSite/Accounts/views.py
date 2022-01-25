@@ -29,7 +29,7 @@ class UpdateProfile(UpdateView, LoginRequiredMixin):
     model = get_user_model()
     form_class = ProfileUpdateForm
     template_name = 'Accounts/edit_profile.html'
-    success_url = reverse_lazy('Accounts:profileview')
+    success_url = reverse_lazy('profileview')
 
 class ProfileView(DetailView):
     model = get_user_model()
