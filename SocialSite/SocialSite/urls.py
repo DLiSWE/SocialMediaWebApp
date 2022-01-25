@@ -29,6 +29,7 @@ urlpatterns = [
     path('thanks/', views.ThanksPage.as_view(), name='thanks'),
     path('posts/', include('Posts.urls', namespace='posts')),
     path('groups/', include('Groups.urls', namespace='groups')),
+    path('search_for/', views.SearchPage.as_view(), name='search'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

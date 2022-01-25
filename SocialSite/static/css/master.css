@@ -4,11 +4,19 @@
   color: #000000 !important;
 }
 
+.profile{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  background-color: rgb(32, 32, 32);
+}
+
 .nav-link{
   border-radius: 30px;
   border-color: rgb(34, 34, 34);
 }
-
 
 /* Something */
 .mycontent{
@@ -16,18 +24,19 @@
     padding-bottom: 30px;
    background: #3f3f3f;
   }
+
+
  /* change info bootstrap color to purple */
 .btn-info {
     background-color: #7354ad !important;
-    border-color: #8860D0 !important;
+    border-color: #e6e3ec !important;
     }
     .btn-info:hover,
-    .btn-info:active,
-    .btn-info:visited,
-    .btn-info:focus {
-    background-color: #694ca0 !important;
-    border-color: #694ca0 !important;
+    .btn-info:active{
+    background-color: #5b00b1 !important;
+    border-color: #05000a !important;
     }
+
   html,
   body {
     height: 100%;

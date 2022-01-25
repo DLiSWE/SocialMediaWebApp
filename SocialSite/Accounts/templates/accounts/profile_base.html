@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block content %}
+<div class="profile-page">
+    <div class="container">
+        <div class="row text-center">
+            {% block pcontent %}{% endblock %}
+            {% block profile_content %}{% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

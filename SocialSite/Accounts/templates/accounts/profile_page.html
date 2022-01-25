@@ -1,15 +1,19 @@
-{% extends "base.html" %}
+{% extends "Accounts/profile_base.html" %}
 {% load static %} 
 
-{% block content %}
-<div class = "col">
+{% block pcontent %}
+<div class = "col-md-4">
     <h1>{{ user.username }}</h1>
     <img class="rounded-circle account-img" src={{ user.avatar.url }}>
     <h6><a href="{{user.urls}}">{{ user.urls }}</a></h6>
-    <p>{{ user.bio }}</p>
-</div>
+    <p class='text-start'>{{ user.bio }}</p>
 <button class='btn btn-info'><a href="{% url 'Accounts:editprof' request.user.pk %}">Edit Profile</a></button>
+</div>
 {% comment %} posts/_post.html {% endcomment %}
 {% endblock %}
-{% block content_edit %}
+
+{% block profile_content %}
+<div class="col-md-8">
+    <h1>Posts or groups user is in here</h1>
+</div>
 {% endblock %}

@@ -3,23 +3,26 @@
 {% block pregroup %}
 <div class="col-md-4">
     <div class = "content">
-    {% if enduser.is_authenticated %}
-    <h2>Welcome Back!
+    {% if user.is_authenticated %}
+    <h2>Welcome Back!</h2>
+<a href="{% url 'Posts:for_user' username=user.username%}">
+    <div class = "card profile">
         <a href="{% url 'Posts:for_user' username=user.username%}">
-            @{{enduser.username}}
-            {{enduser.avatar}}
-            {{enduser.urls}}
-        </a>
-    </h2>
-
+            <img class="card-img-top" src="{{user.avatar.url}}">
+            <p class="card-text">@{{user.username}}</p>
+  
+    </div>    
+</a>
     {% endif %}
+    
     <h2> Groups </h2>
     <p> Welcome to the groups page!</p>
 </div>
-    {% if enduser.is_authenticated %}
+    {% if user.is_authenticated %}
     <a href ="{% url 'Groups:create' %}" class = 'btn btn-md btn-fill btn-info'>
         <span class="bi bi-clipboard-plus">Create New Group</span></a>
     {%endif%}
+
 </div>
 {% endblock %}
 
@@ -27,18 +30,18 @@
 <div class="col-md-8">
     <div class="list-group">
         {% for group in object_list %}
-        <a class='list-group-item list-group-item-action' href="{% url 'Groups:single' slug=group.slug %}">
+        <a class='list-group-item list-group-item-action bg-black text-white' href="{% url 'Groups:single' slug=group.slug %}">
             <h3 class='title list-group-item-heading'>{{group.name}}</h3>
             <div class="list-group-item-text container-fluid">
                 {% comment %} Using pipe will allow user text to look like what its supposed to{% endcomment %}
                 {{group.description_html|safe}}
                 <div class="row">
                     <div class="col-md-4">
-                        <span class='badge rounded-pill bg-primary'>{{group.members.count}}</span>
+                        <span class='badge rounded-pill bg-danger'>{{group.members.count}}</span>
                         member{{group.members.count|pluralize}}
                     </div>
                     <div class="col-md-4">
-                        <span class='badge rounded-pill bg-primary'>{{group.Posts.count}}</span>
+                        <span class='badge rounded-pill bg-danger'>{{group.Posts.count}}</span>
                         post{{group.Posts.count|pluralize}}
                     </div>
                 </div>
