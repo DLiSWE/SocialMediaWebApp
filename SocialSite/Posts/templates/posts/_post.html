@@ -2,6 +2,7 @@
 <br>
 <div class="post media border-top">
     <h4>{{post.message_html|safe|linebreaks}}</h4>
+    
     <div class="media-body">
         <img class="rounded-circle account-img" src="{{ user.avatar.url }}" width="35" height="35">
         <strong>{{post.user.username}}</strong>
@@ -16,7 +17,10 @@
         <span class="group-name"> in {{ post.group.name }}</span>
         {% endif %}
         </h5>
-
+    <div class="post media border-top border-bottom">
+        <h5>We're going to add comments here. </h5>
+    </div>
+    <br>
         <div class="media-footer">
             {% if user.is_authenticated and post.user == user %}
                 <a href="{% url 'Posts:delete' pk=post.pk %}" title="delete"
@@ -25,6 +29,10 @@
                     <span class='bi bi-bookmark-x-fill'> Delete</span>
                 </a>
                 {% endif %}
+                {% comment %} {% url 'Posts:comment' %} {% endcomment %}
+            <a href="{% url 'Posts:comment' pk=post.pk %}" title="comment" class='btn btn-md btn-fill btn-success'>
+                <span class='bi bi-bookmark-plus-fill'>Comment</span>
+            </a>
         </div>
     
     </div>

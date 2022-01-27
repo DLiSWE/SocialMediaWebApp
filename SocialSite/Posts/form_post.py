@@ -1,7 +1,8 @@
 from django import forms
-
+from django.contrib.auth import get_user_model
 from Posts import models
 
+User = get_user_model()
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -21,3 +22,16 @@ class PostForm(forms.ModelForm):
                 pk__in=user.groups.values_list("Groups__pk")
                 )
             )
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        fields = ('user', 'message')
+        models = models.Comment
+
+        widgets = {
+            'user': User,
+            'message': forms.Textarea(attrs={'class':"editable medium-editor-textarea"}),
+        }
+    
+    def __str__(self):
+        return f"{self.message} by {self.user}"

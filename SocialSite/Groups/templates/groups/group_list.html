@@ -30,7 +30,7 @@
 <div class="col-md-8">
     <div class="list-group">
         {% for group in object_list %}
-        <a class='list-group-item list-group-item-action bg-black text-white' href="{% url 'Groups:single' slug=group.slug %}">
+        <a class='list-group-item list-group-item-action bg-black text-white border' href="{% url 'Groups:single' slug=group.slug %}">
             <h3 class='title list-group-item-heading'>{{group.name}}</h3>
             <div class="list-group-item-text container-fluid">
                 {% comment %} Using pipe will allow user text to look like what its supposed to{% endcomment %}

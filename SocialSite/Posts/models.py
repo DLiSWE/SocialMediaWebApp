@@ -45,4 +45,17 @@ class Post(models.Model):
         #every message is linked to a unique user
         unique_together = ['user', 'message']
 
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='comments', on_delete=models.CASCADE)
+    message = models.TextField()
+    create_date = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('post_list', kwargs={"username":self.user.username,
+                                                "pk": self.pk})
+
+    def __str__(self):
+        return self.message
+
 

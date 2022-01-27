@@ -25,12 +25,11 @@
         <h2> No posts available yet! Start a conversation here! </h2>
     {% else %}
         {% for post in group.Posts.all %}
-        {% comment %} inject posts/_post.html using include here {% endcomment %}
         {% include "Posts/_post.html" %}
+        {% comment %} {% if comments in post %} {% for comments in group.Post.Comment.all()? %} {% endcomment %}
         {% endfor %}
     {% endif %}
     </div>
-    
-{% comment %} IF user in group.members.all, render form to post. After post submit is clicked, update page {% endcomment %}   
+      
 </div>
 {% endblock %}

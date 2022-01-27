@@ -1,6 +1,7 @@
 from django.db.models import query
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.http import Http404
 from django.views import generic
@@ -8,6 +9,8 @@ from django.contrib.auth import get_user_model
 from braces.views import SelectRelatedMixin
 from django.contrib import messages
 from . import models
+from .form_post import CommentForm
+
 
 # Create your views here.
 User = get_user_model()
@@ -65,3 +68,17 @@ class DeletePost(LoginRequiredMixin,SelectRelatedMixin,generic.DeleteView):
     def delete(self,*args,**kwargs):
         messages.success(self.request,'Post Deleted')
         return super().delete(*args,**kwargs)
+
+##############################
+
+class CreateCommentForm(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
+    form_class = CommentForm
+    success_url = reverse_lazy('Posts:all')
+
+    def form_valid(self,form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return super().form_valid(form)
+        
+
