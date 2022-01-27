@@ -48,14 +48,23 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='comments', on_delete=models.CASCADE)
+    message_html = models.TextField(editable=False)
     message = models.TextField()
     create_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.message    
+
+    def save(self,*args,**kwargs):
+        #misaka here allows messages with html, etc. to display correctly
+        self.message_html = misaka.html(self.message)
+        super().save(*args,**kwargs)    
 
     def get_absolute_url(self):
         return reverse('post_list', kwargs={"username":self.user.username,
                                                 "pk": self.pk})
 
-    def __str__(self):
-        return self.message
+
+
 
 

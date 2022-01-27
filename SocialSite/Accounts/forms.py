@@ -38,3 +38,4 @@ class ProfileUpdateForm(UserForm):
         if photo.size>settings.MAX_UPLOAD_SIZE:
             raise forms.ValidationError(("{}".format(str(settings.MAX_UPLOAD_SIZE/1000000))))
         return photo
+        
