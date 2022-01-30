@@ -38,6 +38,8 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("Posts:single", kwargs={"username":self.user.username,
                                                 "pk": self.pk})
+
+
     
     class Meta:
         #descending order of created at value
@@ -46,8 +48,18 @@ class Post(models.Model):
         unique_together = ['user', 'message']
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name='comments', on_delete=models.CASCADE)
+    """
+    Class: Comment model
+    Attributes:
+    Post" Foreign key associated with Post PK
+    User: Foreign key associated with User model that is initialized by get_user_model()
+    Date Created: Date time field with current time as input
+    Message: User text field description
+    Message HTML: markdown safe text description of Message attribute
+    Group: Foreign key associated with Group model, imported from Groups app
+    """
+    post = models.ForeignKey(Post, related_name='comments', null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='commenter', null=True, blank=True, on_delete=models.CASCADE)
     message_html = models.TextField(editable=False)
     message = models.TextField()
     create_date = models.DateTimeField(auto_now=True)
@@ -64,7 +76,9 @@ class Comment(models.Model):
         return reverse('post_list', kwargs={"username":self.user.username,
                                                 "pk": self.pk})
 
-
+    class Meta:
+        #descending order of created at value
+        ordering = ['-create_date']
 
 
 

@@ -30,6 +30,7 @@ urlpatterns = [
     path('posts/', include('Posts.urls', namespace='posts')),
     path('groups/', include('Groups.urls', namespace='groups')),
     path('search_for/', views.SearchPage.as_view(), name='search'),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -12,6 +12,7 @@ from . import models
 from .form_post import CommentForm
 
 
+
 # Create your views here.
 User = get_user_model()
 
@@ -71,13 +72,15 @@ class DeletePost(LoginRequiredMixin,SelectRelatedMixin,generic.DeleteView):
 
 ##############################
 
-class CreateCommentForm(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
-    form_class = CommentForm
+class CreateComment(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
+    fields = ('message',)
+    model = models.Comment
     success_url = reverse_lazy('Posts:all')
 
     def form_valid(self,form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
+        self.object.post = self.request.POST.get('post')
         self.object.save()
         return super().form_valid(form)
         
