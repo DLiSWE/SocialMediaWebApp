@@ -27,7 +27,7 @@ class PostForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
 
     class Meta:
-        fields = ('message','post')
+        exclude = ['user']
         model = models.Comment
 
         widgets = {
@@ -37,7 +37,3 @@ class CommentForm(forms.ModelForm):
     
     def __str__(self):
         return f"{self.message} by {self.user}"
-
-    def __init__(self, *args, **kwargs):
-        user = kwargs.pop("user", None)
-        super().__init__(*args, **kwargs)

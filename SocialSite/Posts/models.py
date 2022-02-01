@@ -60,7 +60,7 @@ class Comment(models.Model):
     """
     post = models.ForeignKey(Post, related_name='comments', null=True, blank=True, on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='commenter', null=True, blank=True, on_delete=models.CASCADE)
-    message_html = models.TextField(editable=False)
+    message_html = models.TextField(editable=False, null=True, blank=True)
     message = models.TextField()
     create_date = models.DateTimeField(auto_now=True)
 

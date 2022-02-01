@@ -12,7 +12,7 @@ class EndUser(AbstractUser,PermissionsMixin):
 
 
     def __str__(self):
-        return str(self.user)
+        return str(self.username)
 
     def save(self, *args, **kwargs):
         super(EndUser,self).save(*args,**kwargs)

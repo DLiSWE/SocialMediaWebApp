@@ -26,13 +26,15 @@
     {% else %}
         {% for post in group.Posts.all %}
         {% include "Posts/_post.html" %}
-        {% for comments in group.Posts.comments.all %}
+        <br>
+        {% for comment in post.comments.all %}
         {% include "Posts/_comments.html" %}
-        {% comment %} {% if comments in post %} {% for comments in group.Post.Comment.all()? %} {% endcomment %}
         {% endfor %}
         {% endfor %}
-    {% endif %}
-    </div>
+        
+    {% endif %}    
+    
+</div>
       
 </div>
 {% endblock %}

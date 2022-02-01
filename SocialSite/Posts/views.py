@@ -3,7 +3,7 @@ from django.shortcuts import render,get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.views import generic
 from django.contrib.auth import get_user_model
 from braces.views import SelectRelatedMixin
@@ -72,16 +72,30 @@ class DeletePost(LoginRequiredMixin,SelectRelatedMixin,generic.DeleteView):
 
 ##############################
 
-class CreateComment(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
-    fields = ('message',)
+class CreateComment(LoginRequiredMixin, generic.CreateView):
+    form_class= CommentForm
     model = models.Comment
-    success_url = reverse_lazy('Posts:all')
+    success_url = reverse_lazy('Groups:all')
 
     def form_valid(self,form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
-        self.object.post = self.request.POST.get('post')
+        post_id = self.kwargs['pk']
+        post = models.Post.objects.get(pk=post_id)  
+        self.object.post = post
         self.object.save()
-        return super().form_valid(form)
+        return HttpResponseRedirect(self.get_success_url())
+
+    def form_invalid(self, form):
+        print('form invalid')
+        print(form.errors.values())
+        return render(form, 'Posts/comment_form.html', {'form':form})
+
+#Maybe Later?
+    # def get_form(self, form_class=None):
+    #     form = super(CreateComment, self).get_form(form_class)
+    #     post_id = self.kwargs['pk']
+    #     post = models.Post.objects.get(pk=post_id)       
+    #     return CommentForm(initial={'post':post})
         
 

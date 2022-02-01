@@ -1,10 +1,12 @@
-<div class="post media border-top border-bottom">
-    <h5>        
+<div class="card text-black bg-secondary text-center">
+    <h5>{{comment.message_html|safe|linebreaks}}</h5>
+    <div class="card-body text-black bg-secondary">
+        <img class="rounded-circle account-img" src="{{ post.user.avatar.url }}" width="20" height="20">
     <span class='username'>
-        <p>@{{ comment.post.user.username }}</p>
+        <a href="{% url 'Posts:for_user' username=comment.user.username %}">@{{comment.user.username}}</a>
     </span>
     <time class='time'>
-        <p>{{ comment.post.created_at }}</p>
+        <p>{{ comment.create_date }}</p>
     </time>
-    </h5>
+</div>
 </div>

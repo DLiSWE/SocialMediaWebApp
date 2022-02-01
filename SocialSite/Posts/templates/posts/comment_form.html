@@ -4,10 +4,10 @@
 
 {% block post_comment %}
 <h1>New Comment</h1>
-<form id="commentForm" action="{% url 'Posts:createcomment' request.user.pk %}" method="POST">
+<form id="commentForm" action="{% url 'Posts:createcomment' view.kwargs.pk %}" method="POST">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <input type="hidden" value="{{post.pk}}" name="post_id">
+    {% comment %} <input type="hidden" value="{{post.pk}}" name="post_id"> {% endcomment %}
     <input type="submit" value="Post" class="btn btn-success">
 </form>
 <script> var editor = new MediumEditor('.editable');
