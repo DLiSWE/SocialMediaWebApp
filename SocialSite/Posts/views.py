@@ -77,6 +77,10 @@ class CreateComment(LoginRequiredMixin, generic.CreateView):
     model = models.Comment
     success_url = reverse_lazy('Groups:all')
 
+    # def get_success_url(self):
+    #     url_slug = self.kwargs['slug']
+    #     return reverse_lazy('Groups', kwargs={'slug': url_slug})
+
     def form_valid(self,form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user

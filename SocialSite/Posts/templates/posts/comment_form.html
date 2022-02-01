@@ -8,7 +8,7 @@
     {% csrf_token %}
     {% bootstrap_form form %}
     {% comment %} <input type="hidden" value="{{post.pk}}" name="post_id"> {% endcomment %}
-    <input type="submit" value="Post" class="btn btn-success">
+    <input type="submit" value="Post" class="btn btn-info">
 </form>
 <script> var editor = new MediumEditor('.editable');
 </script>

@@ -27,7 +27,7 @@
                 </a>
                 {% endif %}
                 {% comment %} {% url 'Posts:comment' %} {% endcomment %}
-            <a href="{% url 'Posts:createcomment' pk=post.pk %}" title="comment" class='btn btn-md btn-fill btn-success'>
+            <a href="{% url 'Posts:createcomment' pk=post.pk %}" title="comment" class='btn btn-md btn-fill btn-info'>
                 <span class='bi bi-bookmark-plus-fill'>Comment</span>
             </a>
         </div>
