@@ -13,7 +13,36 @@
 {% endblock %}
 
 {% block profile_content %}
-<div class="col-md-8">
-    <h1>Posts or groups user is in here</h1>
-</div>
+    <div class="col-md-8">
+        <div class="list-group">
+            <p>In Groups:</p>
+            {% for membergroup in object.user_groups.all %}
+            <a class='list-group-item list-group-item-action bg-black text-white border' href="{% url 'Groups:single' membergroup.group.slug %}">
+                <h3 class='title list-group-item-heading'>{{membergroup.group.name}}</h3>
+                <div class="list-group-item-text container-fluid">
+                    {% comment %} Using pipe will allow user text to look like what its supposed to{% endcomment %}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class='badge rounded-pill bg-danger'>{{membergroup.group.members.count}}</span>
+                            member{{group.members.count|pluralize}}
+                        </div>
+                        <div class="col-md-4">
+                            <span class='badge rounded-pill bg-danger'>{{membergroup.group.postin.count}}</span>
+                            post{{group.postin.count|pluralize}}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-8 ms-auto">
+        <div class="list-group">
+            <p> Posts </p>
+            {% for inpost in object.postin.all %}
+            <p>{{ inpost }}</p>
+            {% comment %} {% include "Posts/_post.html" %} {% endcomment %}
+        {% endfor %}
+        </div>
+    </div>
 {% endblock %}

@@ -21,10 +21,10 @@
 
 {% block group_content %} 
     <div class = "col-md-8">
-    {% if group.Posts.count == 0 %}
+    {% if group.postin.count == 0 %}
         <h2> No posts available yet! Start a conversation here! </h2>
     {% else %}
-        {% for post in group.Posts.all %}
+        {% for post in group.postin.all %}
         {% include "Posts/_post.html" %}
         <br>
         {% for comment in post.comments.all %}
